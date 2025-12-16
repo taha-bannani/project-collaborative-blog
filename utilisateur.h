@@ -2,14 +2,38 @@
 #define UTILISATEUR_H
 
 #include <QObject>
+#include <QString>
+#include <QDate>
 
-class utilisateur : public QObject
+class Utilisateur
 {
-    Q_OBJECT
-public:
-    explicit utilisateur(QObject *parent = nullptr);
+protected:
+    int id_Utilisateur;
+    QString nom;
+    QString email;
+    QString motDePasse;
+    QDate dateInscription;
+    QString photoProfil;
 
-signals:
+public:
+    Utilisateur();
+    Utilisateur(int id, const QString &nom, const QString &email,
+                const QString &motDePasse, const QDate &dateInscription,
+                const QString &photoProfil);
+
+    virtual ~Utilisateur() {}
+
+    // Getters
+    int getIdUtilisateur() const;
+    QString getNom() const;
+    QString getEmail() const;
+
+    // Setters
+    void setNom(const QString &nom);
+    void setEmail(const QString &email);
+
+    // Role (polymorphism)
+    virtual QString getRole() const = 0;
 };
 
-#endif // UTILISATEUR_H
+#endif

@@ -377,9 +377,21 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/espacegamers/Documents/projet_cb/admin.h",
+			"MU",
+			"EWIEGA46WW/moc_admin.cpp",
+			null
+		],
+		[
 			"C:/Users/espacegamers/Documents/projet_cb/article.h",
 			"MU",
 			"EWIEGA46WW/moc_article.cpp",
+			null
+		],
+		[
+			"C:/Users/espacegamers/Documents/projet_cb/auteur.h",
+			"MU",
+			"EWIEGA46WW/moc_auteur.cpp",
 			null
 		],
 		[
@@ -404,6 +416,12 @@
 			"C:/Users/espacegamers/Documents/projet_cb/interaction.h",
 			"MU",
 			"EWIEGA46WW/moc_interaction.cpp",
+			null
+		],
+		[
+			"C:/Users/espacegamers/Documents/projet_cb/lecteur.h",
+			"MU",
+			"EWIEGA46WW/moc_lecteur.cpp",
 			null
 		],
 		[
@@ -488,7 +506,9 @@
 	"SETTINGS_FILE" : "C:/Users/espacegamers/Documents/projet_cb/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug/CMakeFiles/projet_cb_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "C:/Users/espacegamers/Documents/projet_cb/admin.cpp", "MU", null ],
 		[ "C:/Users/espacegamers/Documents/projet_cb/article.cpp", "MU", null ],
+		[ "C:/Users/espacegamers/Documents/projet_cb/auteur.cpp", "MU", null ],
 		[ "C:/Users/espacegamers/Documents/projet_cb/categorie.cpp", "MU", null ],
 		[
 			"C:/Users/espacegamers/Documents/projet_cb/commentaire.cpp",
@@ -501,6 +521,7 @@
 			"MU",
 			null
 		],
+		[ "C:/Users/espacegamers/Documents/projet_cb/lecteur.cpp", "MU", null ],
 		[
 			"C:/Users/espacegamers/Documents/projet_cb/like_dislike.cpp",
 			"MU",

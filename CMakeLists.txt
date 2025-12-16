@@ -35,6 +35,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(projet_cb
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        auteur.h auteur.cpp
+        admin.h admin.cpp
+        lecteur.h lecteur.cpp
     )
 else()
     add_executable(projet_cb ${PROJECT_SOURCES})

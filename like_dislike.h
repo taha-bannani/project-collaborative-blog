@@ -2,14 +2,19 @@
 #define LIKE_DISLIKE_H
 
 #include <QObject>
+#include "interaction.h"
 
-class like_dislike : public QObject
-{
-    Q_OBJECT
+class Like_Dislike : public Interaction{
+private:
+
+    bool isLike;
+
 public:
-    explicit like_dislike(QObject *parent = nullptr);
+    Like_Dislike();
+    Like_Dislike(int id_Interaction,int id_Utilisateur, int id_Article, bool isLike);
 
-signals:
+    bool getIsLike() const;
+    void setIsLike(bool value);
 };
 
 #endif // LIKE_DISLIKE_H
