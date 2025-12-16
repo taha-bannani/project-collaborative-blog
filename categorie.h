@@ -1,15 +1,48 @@
 #ifndef CATEGORIE_H
 #define CATEGORIE_H
 
-#include <QObject>
+#include <string>
+using namespace std;
 
-class categorie : public QObject
-{
-    Q_OBJECT
+class Categorie {
+
+private:
+    int idCategorie;
+    string nom;
+    string description;
+    string tags;
+
 public:
-    explicit categorie(QObject *parent = nullptr);
+    // Constructors
+    Categorie();
+    Categorie(int id, string n, string d, string t);
 
-signals:
+    // Getters
+    int getIdCategorie();
+    string getNom();
+    string getDescription();
+    string getTags();
+
+    // Setters
+    void setIdCategorie(int id);
+    void setNom(string n);
+    void setDescription(string d);
+    void setTags(string t);
+
+    // Methods
+    void saisir();
+    void afficher();
+    void afficherResume();
+    bool estValide();
+    void vider();
+    bool comparer(Categorie c);
+    string toString();
+
+    // Static methods
+    static int rechercher(Categorie tab[], int n, int id);
+    static void ajouter(Categorie tab[], int &n);
+    static void supprimer(Categorie tab[], int &n, int id);
+    static void modifier(Categorie tab[], int n, int id);
 };
 
-#endif // CATEGORIE_H
+#endif
