@@ -15,10 +15,17 @@ Categorie::Categorie(int id, string n, string d, string t) {
 }
 
 // Getters
+<<<<<<< HEAD
 int Categorie::getIdCategorie() const { return idCategorie; }
 string Categorie::getNom() const { return nom; }
 string Categorie::getDescription() const { return description; }
 string Categorie::getTags() const { return tags; }
+=======
+int Categorie::getIdCategorie() { return idCategorie; }
+string Categorie::getNom() { return nom; }
+string Categorie::getDescription() { return description; }
+string Categorie::getTags() { return tags; }
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
 
 // Setters
 void Categorie::setIdCategorie(int id) { idCategorie = id; }
@@ -50,6 +57,32 @@ void Categorie::afficher() {
     cout << "Tags: " << tags << endl;
 }
 
+<<<<<<< HEAD
+=======
+void Categorie::afficherResume() {
+    cout << idCategorie << " | " << nom << endl;
+}
+
+bool Categorie::estValide() {
+    return idCategorie > 0 && !nom.empty();
+}
+
+void Categorie::vider() {
+    idCategorie = 0;
+    nom = "";
+    description = "";
+    tags = "";
+}
+
+bool Categorie::comparer(Categorie c) {
+    return idCategorie == c.idCategorie;
+}
+
+string Categorie::toString() {
+    return nom + " (" + tags + ")";
+}
+
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
 // Static methods
 int Categorie::rechercher(Categorie tab[], int n, int id) {
     for(int i = 0; i < n; i++) {
@@ -104,7 +137,10 @@ void Categorie::modifier(Categorie tab[], int n, int id) {
 
     cout << "Categorie modifiée avec succès.\n";
 }
+<<<<<<< HEAD
 
 bool Categorie::estValide() const {
     return idCategorie > 0 && !nom.empty();
 }
+=======
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3

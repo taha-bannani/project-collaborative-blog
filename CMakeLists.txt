@@ -28,6 +28,20 @@ set(PROJECT_SOURCES
     commentaire.h commentaire.cpp
     like_dislike.h like_dislike.cpp
     database.h database.cpp
+
+    auteur.h auteur.cpp
+    admin.h admin.cpp
+    lecteur.h lecteur.cpp
+
+    categorie_dao.h categorie_dao.cpp
+    articledao.h articledao.cpp
+    admindao.h admindao.cpp
+    auteurdao.h auteurdao.cpp
+    interactiondao.h interactiondao.cpp
+    commentairedao.h commentairedao.cpp
+    likedislikedao.h likedislikedao.cpp
+    utilisateurdao.h utilisateurdao.cpp
+    notificationdao.h notificationdao.cpp
 )
 
 # ---- EXECUTABLE ----
@@ -35,26 +49,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(projet_cb
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        auteur.h auteur.cpp
-        admin.h admin.cpp
-        lecteur.h lecteur.cpp
-        categorie_dao.h categorie_dao.cpp
-        articledao.h articledao.cpp
-        admindao.h admindao.cpp
-        auteurdao.h auteurdao.cpp
-        interactiondao.h interactiondao.cpp
-        commentairedao.h commentairedao.cpp
-        likedislikedao.h likedislikedao.cpp
-        utilisateurdao.h utilisateurdao.cpp
-        notificationdao.h notificationdao.cpp
     )
 else()
-    add_executable(projet_cb ${PROJECT_SOURCES}
-        main.cpp
-           mainwindow.cpp
-           mainwindow.h
-           mainwindow.ui
-    )
+    add_executable(projet_cb ${PROJECT_SOURCES})
 endif()
 
 # ---- LINK QT LIBRARIES ----

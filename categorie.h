@@ -18,10 +18,17 @@ public:
     Categorie(int id, string n, string d, string t);
 
     // Getters
+<<<<<<< HEAD
     int getIdCategorie() const;
     string getNom() const;
     string getDescription() const;
     string getTags() const;
+=======
+    int getIdCategorie();
+    string getNom();
+    string getDescription();
+    string getTags();
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
 
     // Setters
     void setIdCategorie(int id);
@@ -33,7 +40,13 @@ public:
     void saisir();
     void afficher();
     void afficherResume();
+<<<<<<< HEAD
     bool estValide()const ;
+=======
+    bool estValide();
+    void vider();
+    bool comparer(Categorie c);
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
     string toString();
 
     // Static methods

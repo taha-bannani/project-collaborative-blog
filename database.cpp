@@ -19,4 +19,14 @@ bool Database::connect() {
     return true;
 }
 
+<<<<<<< HEAD
 
+=======
+void Database::createTables() {
+    QSqlQuery q;
+
+    q.exec("CREATE TABLE test_table (id NUMBER PRIMARY KEY, name VARCHAR2(50))");
+
+    qDebug() << "Tables created (if they didn’t already exist)";
+}
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3

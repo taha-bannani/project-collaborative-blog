@@ -2,6 +2,7 @@
 #define COMMENTAIRE_H
 
 #include <QObject>
+<<<<<<< HEAD
 #include "interaction.h"
 
 
@@ -28,4 +29,16 @@ public:
 
 
 
+=======
+
+class commentaire : public QObject
+{
+    Q_OBJECT
+public:
+    explicit commentaire(QObject *parent = nullptr);
+
+signals:
+};
+
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
 #endif // COMMENTAIRE_H

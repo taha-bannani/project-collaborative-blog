@@ -7,7 +7,11 @@
 
 class Article
 {
+<<<<<<< HEAD
 
+=======
+    Q_OBJECT
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
 
 private:
     QString titre;

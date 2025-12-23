@@ -1,6 +1,7 @@
 #ifndef AUTEUR_H
 #define AUTEUR_H
 
+<<<<<<< HEAD
 #include "Utilisateur.h"
 #include "Article.h"
 
@@ -20,6 +21,17 @@ public:
     void publierArticle(Article &article);
     void modifierArticle(Article &article, const QString &contenu);
     void supprimerArticle(Article &article);
+=======
+#include <QObject>
+
+class auteur : public QObject
+{
+    Q_OBJECT
+public:
+    explicit auteur(QObject *parent = nullptr);
+
+signals:
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
 };
 
 #endif // AUTEUR_H

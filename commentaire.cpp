@@ -13,13 +13,18 @@ Commentaire::Commentaire(int id_Interaction,
 }
 
 // ----- GETTERS / SETTERS -----
+<<<<<<< HEAD
 QString Commentaire::getContenu() const {
+=======
+QString Commentaire::getContenu() {
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
     return contenu;
 }
 
 void Commentaire::setContenu(const QString &value) {
     contenu = value;
 }
+<<<<<<< HEAD
 void Commentaire::afficher() const
 {
     qDebug() << "Commentaire:"
@@ -28,3 +33,5 @@ void Commentaire::afficher() const
              << "| User:" << id_Utilisateur;
 }
 
+=======
+>>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3

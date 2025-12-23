@@ -115,7 +115,7 @@ CMAKE_INSTALL_MANDIR:PATH=
 CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/pprojet_blogc
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/projet_cb
 
 //Run-time variable data (LOCALSTATEDIR/run)
 CMAKE_INSTALL_RUNSTATEDIR:PATH=
@@ -328,15 +328,6 @@ Vulkan_LIBRARY:FILEPATH=Vulkan_LIBRARY-NOTFOUND
 
 //Path to a program.
 WINDEPLOYQT_EXECUTABLE:FILEPATH=C:/Qt/6.10.1/msvc2022_64/bin/windeployqt.exe
-
-//Value Computed by CMake
-pprojet_blogc_BINARY_DIR:STATIC=C:/Users/espacegamers/Documents/pprojet_blogc/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug
-
-//Value Computed by CMake
-pprojet_blogc_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-pprojet_blogc_SOURCE_DIR:STATIC=C:/Users/espacegamers/Documents/pprojet_blogc
 
 //Value Computed by CMake
 projet_cb_BINARY_DIR:STATIC=C:/Users/espacegamers/Documents/pprojet_blogc/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug
@@ -1355,5 +1346,5 @@ Vulkan_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_LIBRARY
 Vulkan_LIBRARY-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
-_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/pprojet_blogc
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/projet_cb
 
