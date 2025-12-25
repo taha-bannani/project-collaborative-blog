@@ -1,8 +1,7 @@
 #ifndef COMMENTAIRE_H
 #define COMMENTAIRE_H
 
-#include <QObject>
-<<<<<<< HEAD
+
 #include "interaction.h"
 
 
@@ -17,7 +16,7 @@ public:
     QString getContenu()const;
 
     void setContenu(const QString &value);
-    void afficher() const override;
+    void afficherInfos() const ;
 
     void ajouterCommentaire();
     void supprimerCommentaire();
@@ -29,16 +28,4 @@ public:
 
 
 
-=======
-
-class commentaire : public QObject
-{
-    Q_OBJECT
-public:
-    explicit commentaire(QObject *parent = nullptr);
-
-signals:
-};
-
->>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
 #endif // COMMENTAIRE_H

@@ -5,7 +5,7 @@
 
 class Database {
 public:
-    Database();      // ← constructor MUST exist in .cpp
+    Database();
     bool connect();
     void createTables();
 };

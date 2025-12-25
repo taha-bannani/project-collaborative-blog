@@ -1,18 +1,26 @@
 #ifndef LIKEDISLIKEDAO_H
 #define LIKEDISLIKEDAO_H
 
-#include "like_dislike.h"
 #include <QList>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QVariant>
+#include <QDebug>
 
-class LikeDislikeDAO {
+#include "Like_Dislike.h"
+
+class LikeDislikeDAO
+{
 public:
-    static bool insert(const Like_Dislike &ld);
-    static bool update(const Like_Dislike &ld);
-    static bool remove(int idInteraction);
-     QList<Like_Dislike> findByArticle(int idArticle);
+    LikeDislikeDAO();
 
-    static int countLikes(int idArticle);
-    static int countDislikes(int idArticle);
+    bool insert(const Like_Dislike &ld);
+    static Like_Dislike* getById(int idInteraction);
+    bool update(const Like_Dislike &ld);
+    bool remove(int idInteraction);
+
+    static QList<Like_Dislike*> getAll();
+    static QList<Like_Dislike*> getByArticle(int idArticle);
 };
 
 #endif

@@ -2,11 +2,11 @@
 #include <QSqlQuery>
 #include <QDebug>
 
-Database::Database() {}   // ← THIS FIXES THE LINKER ERROR
+Database::Database() {}
 
 bool Database::connect() {
     QSqlDatabase db = QSqlDatabase::addDatabase("QOCI");
-    db.setDatabaseName("//192.168.56.1:1521/XEPDB1"); // Replace with your Oracle DSN
+    db.setDatabaseName("//192.168.56.1:1521/XEPDB1");
     db.setUserName("blog_user");
     db.setPassword("blog1234");
 
@@ -17,11 +17,10 @@ bool Database::connect() {
 
     qDebug() << "Database connected";
     return true;
+
+db.transaction();
 }
 
-<<<<<<< HEAD
-
-=======
 void Database::createTables() {
     QSqlQuery q;
 
@@ -29,4 +28,3 @@ void Database::createTables() {
 
     qDebug() << "Tables created (if they didn’t already exist)";
 }
->>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3

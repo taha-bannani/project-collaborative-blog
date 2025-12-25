@@ -5,19 +5,21 @@
 
 class Administrateur : public Utilisateur
 {
+    private:
+              QString niveauAcces;
+
 public:
-<<<<<<< HEAD
-    Administrateur(int id_Utilisateur, const QString &nom, const QString &email,
-=======
-    Administrateur(int id, const QString &nom, const QString &email,
->>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
-                   const QString &motDePasse, const QDate &dateInscription,
-                   const QString &photoProfil);
+    Administrateur();
+    Administrateur(const QString& n, const QString& p, const QString& e, const QString& mdp);
+
 
     QString getRole() const override;
 
     void supprimerProfil(Utilisateur *user);
-    void desactiverProfil(Utilisateur *user);
+    bool bloquerUtilisateur(int id_Utilisateur);
+    bool debloquerUtilisateur(int id_Utilisateur);
+
+    void afficherInfos() const override;
 };
 
 #endif // ADMINISTRATEUR_H

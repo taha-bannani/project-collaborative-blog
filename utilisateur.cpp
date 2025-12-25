@@ -1,6 +1,5 @@
-#include "Utilisateur.h"
-
-// ---- CONSTRUCTEURS ----
+#include "utilisateur.h"
+#include <QDebug>
 
 Utilisateur::Utilisateur()
     : id_Utilisateur(0),
@@ -8,27 +7,27 @@ Utilisateur::Utilisateur()
     email(""),
     motDePasse(""),
     dateInscription(QDate::currentDate()),
-    photoProfil("")
+    photoProfil(""),
+    role("")
 {
 }
 
-Utilisateur::Utilisateur(int id,
-                         const QString &nom,
-                         const QString &email,
-                         const QString &motDePasse,
-                         const QDate &dateInscription,
-                         const QString &photoProfil)
-    : id_Utilisateur(id),
-    nom(nom),
-    email(email),
-    motDePasse(motDePasse),
-    dateInscription(dateInscription),
-    photoProfil(photoProfil)
+Utilisateur::Utilisateur(const QString& n,
+                         const QString& p,
+                         const QString& e,
+                         const QString& mdp,
+                         const QString& r)
+    : id_Utilisateur(0),
+    nom(n),
+    email(e),
+    motDePasse(mdp),
+    dateInscription(QDate::currentDate()),
+    photoProfil(p),
+    role(r)
 {
 }
 
-// ---- GETTERS ----
-int Utilisateur::getIdUtilisateur() const
+int Utilisateur::getId_Utilisateur() const
 {
     return id_Utilisateur;
 }
@@ -43,15 +42,75 @@ QString Utilisateur::getEmail() const
     return email;
 }
 
-// ---- SETTERS ----
-void Utilisateur::setNom(const QString &nom)
+QString Utilisateur::getMotDepass() const
 {
-    this->nom = nom;
+    return motDePasse;
 }
 
-void Utilisateur::setEmail(const QString &email)
+QString Utilisateur::getrole() const
 {
-    this->email = email;
+    return role;
 }
 
-// ⚠️ getRole() is **pure virtual**, so no implementation here.
+
+void Utilisateur::setId_Utilisateur(int id)
+{
+    id_Utilisateur = id;
+}
+
+void Utilisateur::setNom(const QString& n)
+{
+    nom = n;
+}
+
+void Utilisateur::setPrenom(const QString& p)
+{
+    photoProfil = p;   // you used "prenom" but stored in photoProfil
+}
+
+void Utilisateur::setEmail(const QString& e)
+{
+    email = e;
+}
+
+
+bool Utilisateur::create()
+{
+    qDebug() << "Utilisateur created (stub)";
+    return true;
+}
+
+Utilisateur* Utilisateur::read(int id)
+{
+    qDebug() << "Read utilisateur id:" << id << "(stub)";
+    return nullptr;
+}
+
+bool Utilisateur::update()
+{
+    qDebug() << "Utilisateur updated (stub)";
+    return true;
+}
+
+bool Utilisateur::remove()
+{
+    qDebug() << "Utilisateur removed (stub)";
+    return true;
+}
+
+QList<Utilisateur*> Utilisateur::listAll()
+{
+    qDebug() << "List all utilisateurs (stub)";
+    return {};
+}
+
+
+void Utilisateur::afficherInfos() const
+{
+    qDebug() << "=== Utilisateur ===";
+    qDebug() << "ID:" << id_Utilisateur;
+    qDebug() << "Nom:" << nom;
+    qDebug() << "Email:" << email;
+    qDebug() << "Role:" << role;
+    qDebug() << "Date inscription:" << dateInscription.toString();
+}

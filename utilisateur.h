@@ -1,7 +1,6 @@
 #ifndef UTILISATEUR_H
 #define UTILISATEUR_H
 
-#include <QObject>
 #include <QString>
 #include <QDate>
 
@@ -14,26 +13,38 @@ protected:
     QString motDePasse;
     QDate dateInscription;
     QString photoProfil;
+    QString role;
 
 public:
     Utilisateur();
-    Utilisateur(int id, const QString &nom, const QString &email,
-                const QString &motDePasse, const QDate &dateInscription,
-                const QString &photoProfil);
+    Utilisateur(const QString& n, const QString& p, const QString& e,
+                const QString& mdp, const QString& r);
 
     virtual ~Utilisateur() {}
 
-    // Getters
-    int getIdUtilisateur() const;
+    int getId_Utilisateur() const;
     QString getNom() const;
     QString getEmail() const;
+    QString getMotDepass() const;
+    QString getrole() const;
 
-    // Setters
-    void setNom(const QString &nom);
-    void setEmail(const QString &email);
 
-    // Role (polymorphism)
+    void setId_Utilisateur(int id);
+    void setNom(const QString& n);
+    void setPrenom(const QString& p);
+    void setEmail(const QString& e);
+
+
+
+    virtual bool create();
+    static Utilisateur* read(int id);
+    virtual bool update();
+    virtual bool remove();
+    static QList<Utilisateur*> listAll();
+
     virtual QString getRole() const = 0;
+
+    virtual void afficherInfos() const ;
 };
 
 #endif

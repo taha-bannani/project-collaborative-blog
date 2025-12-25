@@ -35,8 +35,8 @@ set(PROJECT_SOURCES
 
     categorie_dao.h categorie_dao.cpp
     articledao.h articledao.cpp
-    admindao.h admindao.cpp
-    auteurdao.h auteurdao.cpp
+
+
     interactiondao.h interactiondao.cpp
     commentairedao.h commentairedao.cpp
     likedislikedao.h likedislikedao.cpp

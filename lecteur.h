@@ -3,14 +3,19 @@
 
 #include "Utilisateur.h"
 
-class Lecteur : public Utilisateur
-{
-public:
-    Lecteur(int id, const QString &nom, const QString &email,
-            const QString &motDePasse, const QDate &dateInscription,
-            const QString &photoProfil);
+class Lecteur : public Utilisateur {
+private:
+    int nombreArticlesLus;
 
-    QString getRole() const override;
+public:
+    Lecteur();
+    Lecteur(const QString& n, const QString& p, const QString& e, const QString& mdp);
+
+    int getNombreArticlesLus() const;
+    void setNombreArticlesLus(int n);
+
+
+    void afficherInfos() const override;
 };
 
-#endif // LECTEUR_H
+#endif

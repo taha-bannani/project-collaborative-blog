@@ -1,17 +1,21 @@
-#ifndef CATEGORIE_DAO_H
-#define CATEGORIE_DAO_H
+#ifndef CATEGORIEDAO_H
+#define CATEGORIEDAO_H
 
-#include "categorie.h"
-#include <QSqlDatabase>
-#include <vector>
+#include "Categorie.h"
+#include <QList>
 
-class CategorieDAO {
+class CategorieDAO
+{
 public:
     static bool insert(const Categorie& c);
+
+
+    static Categorie* findById(int id);
+    static QList<Categorie*> listAll();
+
     static bool update(const Categorie& c);
+
     static bool remove(int id);
-    static bool findById(int id, Categorie& c);
-    static std::vector<Categorie> findAll();
 };
 
-#endif
+#endif // CATEGORIEDAO_H

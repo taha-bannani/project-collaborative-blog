@@ -2,53 +2,52 @@
 #define ARTICLE_H
 
 #include <QString>
-#include <QDate>
-#include <QObject>
+#include <QJsonObject>
+#include <QList>
 
-class Article
-{
-<<<<<<< HEAD
-
-=======
-    Q_OBJECT
->>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
-
+class Article {
 private:
     QString titre;
     QString contenu;
-    QDate datePublication;
-    QString imageCouverture;
-    int idAuteur; // FK vers Auteur
+    int id_Auteur;
+    int idCategorie;
+    QString statut;
+    int nombreVues;
+    int nombreCommentaires;
+    int nombreLikes;
+    int nombreDislikes;
 
 public:
-    // Constructor
     Article();
-    Article(const QString &titre,
-            const QString &contenu,
-            const QDate &datePublication,
-            const QString &imageCouverture,
-            int idAuteur);
+    Article(const QString& t, const QString& c, int auteur, int cat);
 
-    // Getters
+
     QString getTitre() const;
     QString getContenu() const;
-    QDate getDatePublication() const;
-    QString getImageCouverture() const;
-    int getIdAuteur() const;
+    int getId_Auteur() const;
+    int getIdCategorie() const;
+    QString getStatut() const;
+    int getNombreVues() const;
+    int getNombreLikes() const;
+    int getNombreDislikes() const;
 
-    // Setters
-    void setTitre(const QString &titre);
-    void setContenu(const QString &contenu);
-    void setDatePublication(const QDate &date);
-    void setImageCouverture(const QString &image);
-    void setIdAuteur(int idAuteur);
+    void setTitre(const QString& t);  
+    void setStatut(const QString& s);
+    void incrementerVues();
+    void incrementerLikes();
+    void incrementerDislikes();
+    void incrementerCommentaires();
+    void setContenu(const QString& c);
 
-    // CRUD
+
+    bool create();
+    static Article* read(int id);
+    bool update();
+    bool remove();
+    static QList<Article*> listAll();
+
     void publier();
-    void consulter() const;
-    void modifier(const QString &nouveauContenu);
-    void supprimer();
-    static QList<Article> rechercher(const QString &motCle);
+    void afficherInfos() const;
 };
 
 #endif // ARTICLE_H

@@ -1,15 +1,18 @@
-#ifndef COMMENTAIREDAO_H
-#define COMMENTAIREDAO_H
+#ifndef COMMENTAIREDao_H
+#define COMMENTAIREDao_H
 
-#include "commentaire.h"
+#include "Commentaire.h"
 #include <QList>
 
-class CommentaireDAO {
+class CommentaireDAO
+{
 public:
-    static bool insert(const Commentaire &c);
-    static bool update(const Commentaire &c);
+
+    static bool insert(const Commentaire& c);
+
+    static QList<Commentaire*> findByArticle(int idArticle);
+
     static bool remove(int idInteraction);
-    static QList<Commentaire> findByArticle(int idArticle);
 };
 
-#endif
+#endif // COMMENTAIREDao_H

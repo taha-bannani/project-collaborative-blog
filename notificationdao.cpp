@@ -1,69 +1,130 @@
-#include "notificationdao.h"
+#include "NotificationDAO.h"
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QVariant>
 #include <QDebug>
 
-bool NotificationDAO::insert(int idNotification,
-                             int idUtilisateur,
-                             const QString &message)
+bool NotificationDAO::create(const Notification &n)
 {
     QSqlQuery query;
     query.prepare(
-        "INSERT INTO notification "
-        "(id_notification, id_utilisateur, message, lu) "
-        "VALUES (:id, :user, :msg, 0)"
+        "INSERT INTO NOTIFICATION "
+        "(id_utilisateur, id_interaction, message, type_notification, lue, date_creation) "
+        "VALUES (:idUser, :idInter, :msg, :type, :lue, :date)"
         );
 
-    query.bindValue(":id", idNotification);
-    query.bindValue(":user", idUtilisateur);
-    query.bindValue(":msg", message);
+    query.bindValue(":idUser", n.getId_Utilisateur());
+    query.bindValue(":idInter", n.getId_Interaction());
+    query.bindValue(":msg", n.getMessage());
+    query.bindValue(":type", n.getTypeNotification());
+    query.bindValue(":lue", n.isLue());
+    query.bindValue(":date", n.getDateCreation());
 
     if (!query.exec()) {
-        qDebug() << "Insert notification failed:" << query.lastError().text();
+        qDebug() << "Notification create error:" << query.lastError().text();
         return false;
     }
     return true;
 }
 
-bool NotificationDAO::markAsRead(int idNotification)
+Notification* NotificationDAO::read(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM NOTIFICATION WHERE id_notification = :id");
+    query.bindValue(":id", id);
+
+    if (query.exec() && query.next()) {
+        Notification *n = new Notification(
+            query.value("id_utilisateur").toInt(),
+            query.value("id_interaction").toInt(),
+            query.value("message").toString(),
+            query.value("type_notification").toString()
+            );
+
+        n->setIdNotification(query.value("id_notification").toInt());
+        n->setLue(query.value("lue").toBool());
+        return n;
+    }
+    return nullptr;
+}
+
+
+bool NotificationDAO::update(const Notification &n)
 {
     QSqlQuery query;
     query.prepare(
-        "UPDATE notification SET lu = 1 "
+        "UPDATE NOTIFICATION SET "
+        "message = :msg, "
+        "type_notification = :type, "
+        "lue = :lue "
         "WHERE id_notification = :id"
         );
-    query.bindValue(":id", idNotification);
 
-    return query.exec();
+    query.bindValue(":msg", n.getMessage());
+    query.bindValue(":type", n.getTypeNotification());
+    query.bindValue(":lue", n.isLue());
+    query.bindValue(":id", n.getIdNotification());
+
+    if (!query.exec()) {
+        qDebug() << "Notification update error:" << query.lastError().text();
+        return false;
+    }
+    return true;
 }
 
-bool NotificationDAO::remove(int idNotification)
+bool NotificationDAO::remove(int id)
 {
     QSqlQuery query;
-    query.prepare(
-        "DELETE FROM notification WHERE id_notification = :id"
-        );
-    query.bindValue(":id", idNotification);
+    query.prepare("DELETE FROM NOTIFICATION WHERE id_notification = :id");
+    query.bindValue(":id", id);
 
-    return query.exec();
+    if (!query.exec()) {
+        qDebug() << "Notification delete error:" << query.lastError().text();
+        return false;
+    }
+    return true;
 }
 
-QList<QString> NotificationDAO::findByUser(int idUtilisateur)
+QList<Notification*> NotificationDAO::listAll()
 {
-    QList<QString> notifications;
-    QSqlQuery query;
-
-    query.prepare(
-        "SELECT message FROM notification "
-        "WHERE id_utilisateur = :id "
-        "ORDER BY date_notification DESC"
-        );
-    query.bindValue(":id", idUtilisateur);
-    query.exec();
+    QList<Notification*> list;
+    QSqlQuery query("SELECT * FROM NOTIFICATION");
 
     while (query.next()) {
-        notifications.append(query.value(0).toString());
-    }
+        Notification *n = new Notification(
+            query.value("id_utilisateur").toInt(),
+            query.value("id_interaction").toInt(),
+            query.value("message").toString(),
+            query.value("type_notification").toString()
+            );
 
-    return notifications;
+        n->setIdNotification(query.value("id_notification").toInt());
+        n->setLue(query.value("lue").toBool());
+        list.append(n);
+    }
+    return list;
+}
+
+QList<Notification*> NotificationDAO::listByUser(int idUser)
+{
+    QList<Notification*> list;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM NOTIFICATION WHERE id_utilisateur = :id");
+    query.bindValue(":id", idUser);
+
+    if (query.exec()) {
+        while (query.next()) {
+            Notification *n = new Notification(
+                query.value("id_utilisateur").toInt(),
+                query.value("id_interaction").toInt(),
+                query.value("message").toString(),
+                query.value("type_notification").toString()
+                );
+
+            n->setIdNotification(query.value("id_notification").toInt());
+            n->setLue(query.value("lue").toBool());
+            list.append(n);
+        }
+    }
+    return list;
 }

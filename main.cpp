@@ -1,89 +1,148 @@
-
-#include <QApplication>
+#include <iostream>
+#include <QString>
+#include <QCoreApplication>
+#include <QDate>
 #include <QDebug>
 
+#include "Auteur.h"
+#include "UtilisateurDAO.h"
 #include "database.h"
 
-// DAOs
-#include "articledao.h"
-#include "commentairedao.h"
-#include "likedislikedao.h"
-
-// Entities
-#include "article.h"
-#include "commentaire.h"
-#include "like_dislike.h"
-#include "auteur.h"
-#include "lecteur.h"
-#include "admin.h"
+void afficherMenu()
+{
+    std::cout << "\n===== MENU CRUD UTILISATEUR =====\n";
+    std::cout << "1. INSERT Auteur\n";
+    std::cout << "2. FIND Auteur by ID\n";
+    std::cout << "3. LIST All Utilisateurs\n";
+    std::cout << "4. UPDATE Auteur\n";
+    std::cout << "5. DELETE Utilisateur\n";
+    std::cout << "0. EXIT\n";
+    std::cout << "Choice: ";
+}
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QCoreApplication a(argc, argv);
 
-    // ===============================
-    // 1️⃣ DATABASE CONNECTION
-    // ===============================
+
     Database db;
     if (!db.connect()) {
-        qDebug() << "❌ DB connection failed";
+        qDebug() << "DB connection failed";
         return -1;
     }
-    qDebug() << "✅ DB connected";
 
-    // ===============================
-    // 2️⃣ ARTICLE TEST
-    // ===============================
-    Article art(
-        "Titre test",
-        "Contenu test",
-        QDate::currentDate(),
-        "img.png",
-        1
-        );
+    int choice = -1;
 
-    ArticleDAO articleDao;
-    articleDao.insert(art);
-    qDebug() << "✅ Article inserted";
+    while (choice != 0) {
+        afficherMenu();
+        std::cin >> choice;
+        std::cin.ignore();
 
-    // ===============================
-    // 3️⃣ COMMENTAIRE TEST
-    // ===============================
-    CommentaireDAO comDao;
-    QList<Commentaire> commentaires = comDao.findByArticle(1);
 
-    for (const Commentaire &c : commentaires) {
-        c.afficher();   // 🔥 polymorphism test
+        if (choice == 1) {
+            int id;
+            std::string nom, email, mdp, bio;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+            std::cin.ignore();
+
+            std::cout << "Nom: ";
+            std::getline(std::cin, nom);
+
+            std::cout << "Email: ";
+            std::getline(std::cin, email);
+
+            std::cout << "Mot de passe: ";
+            std::getline(std::cin, mdp);
+
+            std::cout << "Bio: ";
+            std::getline(std::cin, bio);
+
+            Auteur auteur(
+                id,
+                QString::fromStdString(nom),
+                QString::fromStdString(email),
+                QString::fromStdString(mdp),
+                QDate::currentDate(),
+                "",
+                QString::fromStdString(bio)
+                );
+
+            if (UtilisateurDAO::insert(auteur)) {
+                std::cout << "Auteur inserted successfully\n";
+            } else {
+                std::cout << "Insert failed\n";
+            }
+        }
+
+        else if (choice == 2) {
+            int id;
+            std::cout << "ID to search: ";
+            std::cin >> id;
+
+            Utilisateur* u = UtilisateurDAO::findById(id);
+            if (u) {
+                u->afficherInfos();
+                delete u;
+            } else {
+                std::cout << "Utilisateur not found\n";
+            }
+        }
+
+        //afficher dakchi
+        else if (choice == 3) {
+            QList<Utilisateur*> list = UtilisateurDAO::listAll();
+            for (Utilisateur* u : list) {
+                u->afficherInfos();
+                delete u;
+            }
+            if (list.isEmpty()) {
+                std::cout << " No utilisateurs found\n";
+            }
+        }
+
+  //la update
+        // else if (choice == 4) {
+        //     int id;
+        //     std::string nom, email;
+
+        //     std::cout << "ID to update: ";
+        //     std::cin >> id;
+        //     std::cin.ignore();
+
+        //     std::cout << "New Nom: ";
+        //     std::getline(std::cin, nom);
+
+        //     std::cout << "New Email: ";
+        //     std::getline(std::cin, email);
+
+        //     Auteur auteur;
+        //     auteur.setId_Utilisateur(id);
+        //     auteur.setNom(QString::fromStdString(nom));
+        //     auteur.setEmail(QString::fromStdString(email));
+
+        //     if (UtilisateurDAO::update(auteur)) {
+        //         std::cout << "Update successful\n";
+        //     } else {
+        //         std::cout << " Update failed\n";
+        //     }
+        // }
+
+
+        else if (choice == 5) {
+            int id;
+            std::cout << "ID to delete: ";
+            std::cin >> id;
+
+            if (UtilisateurDAO::remove(id)) {
+                std::cout << "Utilisateur deleted\n";
+            } else {
+                std::cout << "Delete failed\n";
+            }
+        }
     }
 
-    // ===============================
-    // 4️⃣ LIKE / DISLIKE TEST
-    // ===============================
-    Like_Dislike like(0, 1, 1, true);
-    LikeDislikeDAO likeDao;
-    likeDao.insert(like);
-
-    QList<Like_Dislike> likes = likeDao.findByArticle(1);
-    for (const Like_Dislike &l : likes) {
-        l.afficher();
-    }
-
-    // ===============================
-    // 5️⃣ UTILISATEUR POLYMORPHISM TEST
-    // ===============================
-    Utilisateur* u1 = new Auteur(1, "Auteur", "a@mail.com", "123", QDate::currentDate(), "", "bio");
-    Utilisateur* u2 = new Lecteur(2, "Lecteur", "l@mail.com", "123", QDate::currentDate(), "");
-    Utilisateur* u3 = new Administrateur(3, "Admin", "ad@mail.com", "123", QDate::currentDate(), "");
-
-    qDebug() << u1->getRole();
-    qDebug() << u2->getRole();
-    qDebug() << u3->getRole();
-
-    delete u1;
-    delete u2;
-    delete u3;
-
-    qDebug() << "✅ ALL TESTS FINISHED";
-
-    return a.exec();
+    std::cout << "aki 3awn rbi\n";
+    return 0;
 }

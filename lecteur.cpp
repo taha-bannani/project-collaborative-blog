@@ -1,18 +1,41 @@
-#include "Lecteur.h"
+#include "lecteur.h"
+#include <QDebug>
 
-// ----- CONSTRUCTEUR -----
-Lecteur::Lecteur(int id,
-                 const QString &nom,
-                 const QString &email,
-                 const QString &motDePasse,
-                 const QDate &dateInscription,
-                 const QString &photoProfil)
-    : Utilisateur(id, nom, email, motDePasse, dateInscription, photoProfil)
+// ===============================
+
+Lecteur::Lecteur()
+    : Utilisateur(),
+    nombreArticlesLus(0)
 {
 }
 
-// ----- ROLE -----
-QString Lecteur::getRole() const
+Lecteur::Lecteur(const QString& n,
+                 const QString& p,
+                 const QString& e,
+                 const QString& mdp)
+    : Utilisateur(),
+    nombreArticlesLus(0)
 {
-    return "Lecteur";
+}
+
+
+int Lecteur::getNombreArticlesLus() const
+{
+    return nombreArticlesLus;
+}
+
+void Lecteur::setNombreArticlesLus(int n)
+{
+    nombreArticlesLus = n;
+}
+
+
+
+void Lecteur::afficherInfos() const
+{
+    qDebug() << "=== Lecteur ===";
+    qDebug() << "ID:" << id_Utilisateur;
+    qDebug() << "Nom:" << nom;
+    qDebug() << "Email:" << email;
+    qDebug() << "Articles lus:" << nombreArticlesLus;
 }

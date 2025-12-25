@@ -4,11 +4,18 @@
 #include "Interaction.h"
 #include <QList>
 
-class InteractionDAO {
+class InteractionDAO
+{
 public:
-    static bool insert(const Interaction &i, const QString &type);
-    static QList<Interaction*> findByArticle(int idArticle);
-    static bool remove(int idInteraction);
+    static bool insert(const Interaction& i);
+
+    static Interaction* findById(int id);
+    static QList<Interaction*> listAll();
+
+    static bool update(const Interaction& i);
+
+
+    static bool remove(int id);
 };
 
 #endif

@@ -2,41 +2,40 @@
 #define INTERACTION_H
 
 #include <QString>
-#include <QDate>
+#include <QJsonObject>
+#include <QList>
+#include <QDateTime>
 
 class Interaction {
 protected:
     int id_Interaction;
     int id_Utilisateur;
     int id_Article;
-    QDate date;
+    QString typeInteraction;
+    QDateTime dateInteraction;
 
 public:
     Interaction();
-<<<<<<< HEAD
-    Interaction(int id_Interaction, int id_Utilisateur,int id_Article, const QDate &date);
-=======
-    Interaction(int id_Interaction, int id_Utilisateur,
-                int id_Article, const QDate &date);
->>>>>>> 83403929ce121ce417630a984ae9fd2c9ad199d3
+    Interaction(int id_Interaction,int id_Utilisateur, int id_Article, const QString& type);
+    virtual ~Interaction();
 
-    virtual ~Interaction() {}
-
-    // Getters
     int getId_Interaction() const;
     int getId_Utilisateur() const;
     int getId_Article() const;
-    QDate getDate() const;
+    QString getTypeInteraction() const;
+    QDateTime getDateInteraction() const;
 
-    // Setters
-    void setDate(const QDate &d);
+    void setId_Interaction(int id);
 
-    // Logic
-    bool estLieA(int idArt) const;
-    bool estEffectuePar(int idUser) const;
 
-    // Polymorphic method
-    virtual void afficher() const = 0;
+
+    virtual bool create();
+    static Interaction* read(int id);
+    virtual bool update();
+    virtual bool remove();
+    static QList<Interaction*> listAll();
+
+    virtual void afficherInfos() const;
 };
 
-#endif
+#endif // INTERACTION_H

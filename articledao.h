@@ -1,16 +1,22 @@
 #ifndef ARTICLEDAO_H
 #define ARTICLEDAO_H
 
-#include "article.h"
+#include "Article.h"
 #include <QList>
 
-class ArticleDAO {
+class ArticleDAO
+{
 public:
-    static bool insert(const Article &a);
-    static bool update(int id, const Article &a);
+
+    static bool insert(const Article& article);
+
+
+    static Article* findById(int id);
+    static QList<Article*> listAll();
+
+    static bool update(const Article& article);
+
     static bool remove(int id);
-    static QList<Article> findAll();
-    static QList<Article> findByKeyword(const QString &keyword);
 };
 
 #endif // ARTICLEDAO_H
